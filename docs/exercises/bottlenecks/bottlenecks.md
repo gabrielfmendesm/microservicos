@@ -50,14 +50,14 @@ Observability is the ability to measure and understand the internal state of a s
 
         ``` { .yaml .lineno="1" }
         management:
-        endpoint:
-            gateway:
-            enabled: true
-        endpoints:
-            web:
-            base-path: /gateway/actuator
-            exposure:
-                include: [ 'prometheus', 'gateway' ]    
+            endpoint:
+                gateway:
+                enabled: true
+            endpoints:
+                web:
+                base-path: /gateway/actuator
+                exposure:
+                    include: [ 'prometheus', 'gateway' ]    
         ```
 
     === "3. compose.yaml"
