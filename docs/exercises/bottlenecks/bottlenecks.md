@@ -26,22 +26,34 @@ Observability is the ability to measure and understand the internal state of a s
 
     This tip provides a basic configuration for integrating Spring Boot with Prometheus and Grafana for monitoring purposes.
 
+    Suggested file structure:
+
+    ``` { .tree }
+    microservices
+        src
+            main
+                resources
+                    application.yaml
+        pom.xml
+    volume
+        prometheus
+            prometheus.yml
+        grafana
+            provisioning
+                datasources
+                    datasources.yml
+    .env # (1)!
+    compose.yaml
+    ```
+
+    1. VOLUME=./volume
+
     === "1. pom.xml"
 
         Add the following dependencies to your `pom.xml` file:
 
         ``` { .xml .lineno="1" }
-        <!-- Metrics for usage -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <!-- Export to Prometheus format -->
-        <dependency>
-            <groupId>io.micrometer</groupId>
-            <artifactId>micrometer-registry-prometheus</artifactId>
-            <scope>runtime</scope>
-        </dependency>
+        --8<-- "./docs/exercises/bottlenecks/observability/pom.xml"
         ```
 
     === "2. application.yaml"
@@ -49,15 +61,7 @@ Observability is the ability to measure and understand the internal state of a s
         Configure the `application.yaml` file to enable the actuator and Prometheus endpoint:
 
         ``` { .yaml .lineno="1" }
-        management:
-            endpoint:
-                gateway:
-                enabled: true
-            endpoints:
-                web:
-                base-path: /gateway/actuator
-                exposure:
-                    include: [ 'prometheus', 'gateway' ]    
+        --8<-- "./docs/exercises/bottlenecks/observability/application.yaml"
         ```
 
     === "3. compose.yaml"
@@ -65,27 +69,7 @@ Observability is the ability to measure and understand the internal state of a s
         Include into the `compose.yaml` file to set up Prometheus and Grafana:
 
         ``` { .yaml .lineno="1" }
-        prometheus:
-            image: prom/prometheus:latest
-            hostname: prometheus
-            ports:
-            - 9090:9090
-            volumes:
-            - $VOLUME/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-        
-        grafana:
-            image: grafana/grafana-enterprise
-            hostname: grafana
-            ports:
-            - 3000:3000
-            environment:
-            - GF_SECURITY_ADMIN_PASSWORD=admin
-            volumes:
-            - $VOLUME/grafana:/var/lib/grafana
-            - $VOLUME/grafana/provisioning/datasources:/etc/grafana/provisioning/datasources      
-            restart: always
-            depends_on:
-            - prometheus
+        --8<-- "./docs/exercises/bottlenecks/observability/compose.yaml"
         ```
 
     === "4. prometheus.yml"
@@ -93,67 +77,15 @@ Observability is the ability to measure and understand the internal state of a s
         Connect Prometheus to your Spring Boot application by creating a `prometheus.yaml` file:
 
         ```{ .yaml .lineno="1" }
-        scrape_configs:
-
-        - job_name: 'GatewayMetrics'
-            metrics_path: '/gateway/actuator/prometheus'
-            scrape_interval: 1s
-            static_configs:
-            - targets:
-                - gateway:8080
-                labels:
-                application: 'Gateway Application'
-
-        - job_name: 'AuthMetrics'
-            metrics_path: '/auth/actuator/prometheus'
-            scrape_interval: 1s
-            static_configs:
-            - targets:
-                - auth:8080
-                labels:
-                application: 'Auth Application'
-
-        # - job_name: 'AccountMetrics'
-        #   metrics_path: '/account/actuator/prometheus'
-        #   scrape_interval: 1s
-        #   static_configs:
-        #     - targets:
-        #       - account:8080
-        #       labels:
-        #         application: 'Account Application'
-
-        # - job_name: 'ProductMetrics'
-        #   metrics_path: '/product/actuator/prometheus'
-        #   scrape_interval: 1s
-        #   static_configs:
-        #     - targets:
-        #       - product:8080
-        #       labels:
-        #         application: 'Product Application'
-
-        # - job_name: 'OrderMetrics'
-        #   metrics_path: '/order/actuator/prometheus'
-        #   scrape_interval: 1s
-        #   static_configs:
-        #     - targets:
-        #       - order:8080
-        #       labels:
-        #         application: 'Order Application'
+        --8<-- "./docs/exercises/bottlenecks/observability/prometheus.yml"
         ```
 
     === "5. Grafana to Prometheus"
 
-        To connect Grafana to Prometheus, create a `datasource.yaml` file in the `provisioning/datasources` directory:
+        To connect Grafana to Prometheus, create a `datasources.yml` file in the `provisioning/datasources` directory:
 
         ```{ .yaml .lineno="1" }
-        apiVersion: 1
-
-        datasources:
-        - name: Prometheus
-            type: prometheus
-            access: proxy
-            url: http://prometheus:9090
-            isDefault: true
+        --8<-- "./docs/exercises/bottlenecks/observability/datasources.yml"
         ```
 
     === "6. Access Grafana"
@@ -161,6 +93,12 @@ Observability is the ability to measure and understand the internal state of a s
         After starting the containers and binding the ports to your local machine, you can access Grafana at `http://localhost:3000` with the default username `admin` and password `admin`. You can then create or import dashboards to visualize the metrics collected from your Spring Boot application.
 
         For more information on how to create dashboards in Grafana, refer to the [Grafana documentation](https://grafana.com/docs/grafana/latest/getting-started/getting-started-grafana/){target="_blank"}.
+
+        !!! tip "A nice dashboard for Spring Boot"
+
+            You can find a nice dashboard for Spring Boot applications in the Grafana dashboard repository: [SpringBoot APM Dashboard](https://grafana.com/grafana/dashboards/12900){target="_blank"}.
+
+            ![](./docs/exercises/bottlenecks/observability/grafana12900.png){width="100%"}
 
 
 

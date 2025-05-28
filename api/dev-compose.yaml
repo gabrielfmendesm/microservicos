@@ -51,8 +51,8 @@ services:
   prometheus:
     image: prom/prometheus:latest
     hostname: prometheus
-    ports:
-      - 9090:9090
+    # ports:
+    #   - 9090:9090
     volumes:
       - $VOLUME/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
   
