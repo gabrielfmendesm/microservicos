@@ -239,7 +239,13 @@ Os testes de carga são uma parte importante do desenvolvimento de software, poi
 
     Faça um teste de carga na sua aplicação Spring Boot. Grave um video do teste de carga, mostrando:
     - O teste de carga em execução;
-    - HPA (Horizontal Pod Autoscaler) em execução;
+    - HPA (Horizontal Pod Autoscaler) em execução.
+
+    !!! tip "Dicas"
+
+    - No do link do HPA, você encontrará um exemplo de teste de carga. Ele aponta para um apache httpd, mas você pode adaptá-lo para o seu projeto Spring Boot;
+    - Um endereço de exemplo para o teste de carga é: `http://<dns-name>/info`. Pois o `gateway` possui um endpoint `/info` que retorna informações sobre a aplicação. Você pode usar esse endpoint para testar a carga da sua aplicação.
+    
     
 
 ## CI/CD
