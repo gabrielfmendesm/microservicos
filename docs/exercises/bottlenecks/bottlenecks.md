@@ -29,7 +29,7 @@ Observability is the ability to measure and understand the internal state of a s
     Suggested file structure:
 
     ``` { .tree }
-    microservices
+    microservice
         src
             main
                 resources
