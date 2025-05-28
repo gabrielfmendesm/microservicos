@@ -131,7 +131,7 @@ extra_css:
   - assets/stylesheets/extra.css
 
 nav:
-  - Home: index.md
+  - Ementa: index.md
   - 2025.1: versions/2025.1.md
   - Checkpoints:
     - 1. CRUD: checkpoints/1/checkpoint.md
