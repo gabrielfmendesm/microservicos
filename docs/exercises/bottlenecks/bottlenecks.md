@@ -98,7 +98,7 @@ Observability is the ability to measure and understand the internal state of a s
 
             You can find a nice dashboard for Spring Boot applications in the Grafana dashboard repository: [SpringBoot APM Dashboard](https://grafana.com/grafana/dashboards/12900){target="_blank"}.
 
-            ![](./docs/exercises/bottlenecks/observability/grafana12900.png){width="100%"}
+            ![Grafana Dashboard for Spring Boot APM](./observability/grafana12900.png){width="100%"}
 
 
 
