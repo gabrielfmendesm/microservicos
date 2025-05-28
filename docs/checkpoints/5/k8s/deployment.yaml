@@ -13,18 +13,18 @@ spec:
         app: postgres
     spec:
       containers:
-          - name: db
+          - name: postgres
             image: 'postgres:latest'
             imagePullPolicy: Always
             ports:
               - containerPort: 5432
             resources:
               requests:
-                memory: "256Mi"
-                cpu: "250m"
+                memory: "1Gi"
+                cpu: "0.1"
               limits:
-                memory: "512Mi"
-                cpu: "500m"
+                memory: "1.5Gi"
+                cpu: "0.5"
             env:
               - name: POSTGRES_DB
                 valueFrom:

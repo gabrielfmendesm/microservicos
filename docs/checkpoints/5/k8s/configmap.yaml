@@ -5,5 +5,5 @@ metadata:
     labels:
         app: postgres
 data:
-    POSTGRES_HOST: db
+    POSTGRES_HOST: postgres
     POSTGRES_DB: store
