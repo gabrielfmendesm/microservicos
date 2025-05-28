@@ -88,7 +88,7 @@ Observability is the ability to measure and understand the internal state of a s
             - prometheus
         ```
 
-    === "4. prometheus.yaml"
+    === "4. prometheus.yml"
 
         Connect Prometheus to your Spring Boot application by creating a `prometheus.yaml` file:
 
