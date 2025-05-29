@@ -48,7 +48,7 @@ A AWS é uma plataforma de computação em nuvem que oferece uma ampla gama de s
 
 O Amazon Elastic Kubernetes Service (EKS) é um serviço gerenciado que facilita a execução do Kubernetes na AWS sem a necessidade de instalar e operar seu próprio plano de controle ou nós de trabalho do Kubernetes. O EKS cuida da alta disponibilidade e escalabilidade do plano de controle do Kubernetes, permitindo que você se concentre em implantar e gerenciar seus aplicativos.
 
-- [EKS](https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html){target="_blank"}
+[EKS](https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html){target="_blank"}
 
 !!! danger "Custo de Uso"
 
