@@ -147,8 +147,7 @@ nav:
       - 4. Jenkins: exercises/exercise4.md
       - 5. MiniKube: exercises/exercise5.md
       - Bottlenecks: exercises/bottlenecks/bottlenecks.md
-    - Team:
-      - Project: exercises/project/project.md
+    - Project: exercises/project/project.md
   - Concepts:
     - Microservices: concepts/microservices.md
     - Architectures: concepts/architectures.md

@@ -248,56 +248,56 @@ Os testes de carga são uma parte importante do desenvolvimento de software, poi
 
     !!! example "Example of HPA"
 
-        Open three terminal windows, one for each tab below.
+    Open three terminal windows, one for each tab below.
 
 
-        === "1. Create the HPA"
+    === "1. Create the HPA"
 
-            Create the HPA (Horizontal Pod Autoscaler) for the `gateway` deployment. The HPA will automatically scale the number of pods in the deployment based on CPU usage.
+        Create the HPA (Horizontal Pod Autoscaler) for the `gateway` deployment. The HPA will automatically scale the number of pods in the deployment based on CPU usage.
 
-            ``` { .bash .copy }
-            kubectl autoscale deployment gateway --cpu-percent=50 --min=1 --max=10
-            ```
+        ``` { .bash .copy }
+        kubectl autoscale deployment gateway --cpu-percent=50 --min=1 --max=10
+        ```
 
-            Check the status of the HPA:
+        Check the status of the HPA:
 
-            ``` { .bash .copy }
-            kubectl get hpa                                                       
-            NAME      REFERENCE            TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
-            gateway   Deployment/gateway   cpu: 1%/50%   1         10        1          66s
-            ```
+        ``` { .bash .copy }
+        kubectl get hpa                                                       
+        NAME      REFERENCE            TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+        gateway   Deployment/gateway   cpu: 1%/50%   1         10        1          66s
+        ```
 
-            Watch the HPA status:
+        Watch the HPA status:
 
-            ``` { .bash .copy }
-            watch -n 1 'kubectl get hpa'
-            ```
+        ``` { .bash .copy }
+        watch -n 1 'kubectl get hpa'
+        ```
 
-            ---
+        ---
 
-            At the end of the test, delete the HPA:
+        At the end of the test, delete the HPA:
 
-            ``` { .bash .copy }
-            kubectl delete hpa gateway
-            ```
+        ``` { .bash .copy }
+        kubectl delete hpa gateway
+        ```
 
-        === "2. Monitor the Pods"
+    === "2. Monitor the Pods"
 
-            Open another terminal window and monitor the pods in the `gateway` deployment:
+        Open another terminal window and monitor the pods in the `gateway` deployment:
 
-            ``` { .bash .copy }
-            watch -n 1 'kubectl get pods -l app=gateway'
-            ```
+        ``` { .bash .copy }
+        watch -n 1 'kubectl get pods -l app=gateway'
+        ```
 
-        === "3. Run the Load Test"
+    === "3. Run the Load Test"
 
-            Open another terminal window and run the load test against the `gateway` deployment. This will simulate a high load on the application, causing the HPA to scale the number of pods in the deployment.
+        Open another terminal window and run the load test against the `gateway` deployment. This will simulate a high load on the application, causing the HPA to scale the number of pods in the deployment.
 
-            ``` { .bash .copy }
-            kubectl run -i --tty load-generator --rm --image=busybox:1.28 --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://gateway/info; done"
-            ```
+        ``` { .bash .copy }
+        kubectl run -i --tty load-generator --rm --image=busybox:1.28 --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://gateway/info; done"
+        ```
 
-            In the command above, the `wget` command is used to send requests to the `/info` endpoint of the `gateway` deployment. The `while` loop will continue to send requests until you stop it (e.g., by pressing `Ctrl+C`). The interval between requests is set to 0.01 seconds, which simulates a high load on the application. Try to increase and decrease the interval to see how the HPA reacts to different loads.
+        In the command above, the `wget` command is used to send requests to the `/info` endpoint of the `gateway` deployment. The `while` loop will continue to send requests until you stop it (e.g., by pressing `Ctrl+C`). The interval between requests is set to 0.01 seconds, which simulates a high load on the application. Try to increase and decrease the interval to see how the HPA reacts to different loads.
 
 
 ## CI/CD
