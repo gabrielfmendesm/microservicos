@@ -117,52 +117,100 @@ flowchart TD
 
 - **Secret**: Similar to ConfigMap, but used for sensitive information like passwords or API keys, ensuring they are stored securely.
 
-Example of a simple Kubernete's YAML files:
+!!! tip "Example on the Postgres Service"
 
-=== "secrets.yaml"
-
-    ``` { .yaml .copy .select linenums="1" }
-    --8<-- "https://raw.githubusercontent.com/Insper/platform/refs/heads/main/docs/checkpoints/5/k8s/secrets.yaml"
+    ``` { .tree }
+    postgres-service
+        k8s
+            secrets.yaml
+            configmap.yaml
+            deployment.yaml
+            service.yaml
     ```
 
-    ```{ .bash .copy .select }
-    kubectl apply -f ./k8s/secrets.yaml
-    kubectl get secrets
+    === "secrets.yaml"
+
+        ``` { .yaml .copy .select linenums="1" }
+        --8<-- "https://raw.githubusercontent.com/Insper/platform/refs/heads/main/docs/checkpoints/5/k8s/secrets.yaml"
+        ```
+
+        ```{ .bash .copy .select }
+        kubectl apply -f ./k8s/secrets.yaml
+        kubectl get secrets
+        ```
+
+    === "configmap.yaml"
+
+        ``` { .yaml .copy .select linenums="1" }
+        --8<-- "https://raw.githubusercontent.com/Insper/platform/refs/heads/main/docs/checkpoints/5/k8s/configmap.yaml"
+        ```
+
+        ```{ .bash .copy .select }
+        kubectl apply -f ./k8s/configmap.yaml
+        kubectl get configmap
+        ```
+
+    === "deployment.yaml"
+
+        ``` { .yaml .copy .select linenums="1" }
+        --8<-- "https://raw.githubusercontent.com/Insper/platform/refs/heads/main/docs/checkpoints/5/k8s/deployment.yaml"
+        ```
+
+        ```{ .bash .copy .select }
+        kubectl apply -f ./k8s/deployment.yaml
+        kubectl get deployments
+        kubectl get pods
+        ```
+
+    === "service.yaml"
+
+        ``` { .yaml .copy .select linenums="1" }
+        --8<-- "https://raw.githubusercontent.com/Insper/platform/refs/heads/main/docs/checkpoints/5/k8s/service.yaml"
+        ```
+
+        ```{ .bash .copy .select }
+        kubectl apply -f ./k8s/service.yaml
+        kubectl get services
+        ```
+
+!!! tip "Example on the Gateway Service"
+
+    ``` { .tree }
+    gateway-service
+        k8s
+            k8s.yaml
     ```
 
-=== "configmap.yaml"
+    === "k8s.yaml"
 
-    ``` { .yaml .copy .select linenums="1" }
-    --8<-- "https://raw.githubusercontent.com/Insper/platform/refs/heads/main/docs/checkpoints/5/k8s/configmap.yaml"
-    ```
+        ``` { .yaml .copy .select linenums="1" }
+        --8<-- "https://raw.githubusercontent.com/hsandmann/insper.store.gateway-service/refs/heads/main/k8s/k8s.yaml"
+        ```
 
-    ```{ .bash .copy .select }
-    kubectl apply -f ./k8s/configmap.yaml
-    kubectl get configmap
-    ```
+        ```{ .bash .copy .select }
+        kubectl apply -f ./k8s/k8s.yaml
+        kubectl get deployments
+        kubectl get pods
+        kubectl get services
+        ```
 
-=== "deployment.yaml"
+        ```{ .bash .select }
+        NAME         TYPE           CLUSTER-IP     EXTERNAL-IP                                                              PORT(S)        AGE
+        gateway      LoadBalancer   10.100.59.61   aac9dbab7421e4ec0a1b19472728b793-834724138.us-east-2.elb.amazonaws.com   80:31973/TCP   34m
+        kubernetes   ClusterIP      10.100.0.1     <none>                                                                   443/TCP        5d5h
+        ```
 
-    ``` { .yaml .copy .select linenums="1" }
-    --8<-- "https://raw.githubusercontent.com/Insper/platform/refs/heads/main/docs/checkpoints/5/k8s/deployment.yaml"
-    ```
+        In a browser, you can access the gateway service using the external IP address:
 
-    ```{ .bash .copy .select }
-    kubectl apply -f ./k8s/deployment.yaml
-    kubectl get deployments
-    kubectl get pods
-    ```
+        ``` {.bash .copy .select }
+        http://aac9dbab7421e4ec0a1b19472728b793-834724138.us-east-2.elb.amazonaws.com/info # (1)!
+        ```
 
-=== "service.yaml"
+        1. Note that it is a HTTP request, not HTTPS. If you want to use HTTPS, you need to set up TLS certificates and configure the Ingress resource accordingly.
 
-    ``` { .yaml .copy .select linenums="1" }
-    --8<-- "https://raw.githubusercontent.com/Insper/platform/refs/heads/main/docs/checkpoints/5/k8s/service.yaml"
-    ```
+        Another way to expose the API is to use the `Ingress` resource, which allows you to define rules for routing external HTTP/S traffic to your services. This is particularly useful for managing multiple services under a single domain or subdomain. See the [Ingress documentation](https://kubernetes.io/docs/concepts/services-networking/ingress/){target="_blank"} for more details.
 
-    ```{ .bash .copy .select }
-    kubectl apply -f ./k8s/service.yaml
-    kubectl get services
-    ```
+
 
 !!! tip "Horizontal Pod Autoscaler"
 
