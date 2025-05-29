@@ -245,6 +245,7 @@ kubectl version --client
 | `kubectl exec -it <pod-name> -- bash` | Open a shell in a running pod. |
 | `kubectl apply -f <file.yaml>` | Apply a configuration file to create/update resources. |
 | `kubectl delete pod <pod-name>` | Delete a specific pod. |
+| `kubectl delete deployment <deployment-name>` | Delete a specific deployment. |
 | `kubectl scale deployment <deployment-name> --replicas=<number>` | Scale a deployment to a specified number of replicas. |
 | `kubectl port-forward <pod-name> <local-port>:<pod-port>` | Forward a local port to a port on a pod. |
 | `kubectl get nodes` | List all nodes in the cluster. |
@@ -252,6 +253,9 @@ kubectl version --client
 | `kubectl get configmaps` | List all config maps in the current namespace. |
 | `kubectl get secrets` | List all secrets in the current namespace. |
 | `kubectl get ingress` | List all ingress resources in the current namespace. |
+| `kubectl autoscale deployment <deployment-name> --cpu-percent=<target-percentage> --min=<min-replicas> --max=<max-replicas>` | Create or update a Horizontal Pod Autoscaler for a deployment. |
+| `kubectl get hpa` | List all Horizontal Pod Autoscalers in the current namespace. |
+| `kubectl delete hpa <hpa-name>` | Delete a specific Horizontal Pod Autoscaler. |
 | `kubectl delete --all` | Delete all resources in the current namespace. |
 
 ## Minikube
