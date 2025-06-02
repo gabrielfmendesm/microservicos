@@ -6,5 +6,6 @@ env/
 target/
 volume/
 __pycache__/
+jenkins/
 
 .env
