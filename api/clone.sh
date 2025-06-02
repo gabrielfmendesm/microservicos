@@ -1,15 +1,15 @@
-git clone git@github.com:hsandmann/insper.store.account.git
-git clone git@github.com:hsandmann/insper.store.account-service.git
+git clone https://github.com/gabrielfmendesm/account.git
+git clone https://github.com/gabrielfmendesm/account-service.git
 
-git clone git@github.com:hsandmann/insper.store.auth.git
-git clone git@github.com:hsandmann/insper.store.auth-service.git
+git clone https://github.com/gabrielfmendesm/auth.git
+git clone https://github.com/gabrielfmendesm/auth-service.git
 
-git clone git@github.com:hsandmann/insper.store.gateway-service.git
+git clone https://github.com/gabrielfmendesm/exchange-service.git
 
-mv insper.store.account account
-mv insper.store.account-service account-service
+git clone https://github.com/gabrielfmendesm/gateway-service.git
 
-mv insper.store.auth auth
-mv insper.store.auth-service auth-service
+git clone https://github.com/gabrielfmendesm/product.git
+git clone https://github.com/gabrielfmendesm/product-service.git
 
-mv insper.store.gateway-service gateway-service
+git clone https://github.com/gabrielfmendesm/order.git
+git clone https://github.com/gabrielfmendesm/order-service.git
