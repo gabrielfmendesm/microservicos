@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: account
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: account
+  template:
+    metadata:
+      labels:
+        app: account
+    spec:
+      containers:
+        - name: account
+          image: gabrielfmendesm/account:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              memory: "200Mi"
+              cpu: "50m"
+            limits:
+              memory: "300Mi"
+              cpu: "200m"
+          env:
+            # Host do Postgres (lê do ConfigMap)
+            - name: DATABASE_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-configmap
+                  key: POSTGRES_HOST
+            # Porta do Postgres (pode usar default 5432)
+            - name: DATABASE_PORT
+              value: "5432"
+            # Nome do banco (se quiser puxar do ConfigMap, remova `/store` do app.yaml e use isto:
+            # - name: DATABASE_NAME
+            #     valueFrom:
+            #       configMapKeyRef:
+            #         name: postgres-configmap
+            #         key: POSTGRES_DB
+            # Por enquanto você pode deixar fixo no application.yaml do account (/store).
+            # Usuário do Postgres (do Secret)
+            - name: DATABASE_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secrets
+                  key: POSTGRES_USER
+            # Senha do Postgres (do Secret)
+            - name: DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secrets
+                  key: POSTGRES_PASSWORD
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: account
+  labels:
+    app: account
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 8080
+  selector:
+    app: account
