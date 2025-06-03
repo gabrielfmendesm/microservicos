@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: auth
+  labels:
+    app: auth
 spec:
   replicas: 1
   selector:
@@ -13,21 +15,30 @@ spec:
         app: auth
     spec:
       containers:
-        - name: db
-          image: gabrielfmendesm/auth:latest
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 8080
-          resources:
-            requests:
-              memory: "200Mi"
-              cpu: "50m"
-            limits:
-              memory: "300Mi"
-              cpu: "200m"
-
+      - name: auth
+        image: store-auth:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+        env:
+        - name: DATABASE_HOST
+          value: postgres
+        - name: DATABASE_PORT
+          value: "5432"
+        - name: DATABASE_NAME
+          value: store
+        - name: DATABASE_USER
+          value: store
+        - name: DATABASE_PASSWORD
+          value: store
+        resources:
+          requests:
+            cpu: "50m"
+            memory: "200Mi"
+          limits:
+            cpu: "200m"
+            memory: "300Mi"
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
@@ -35,11 +46,10 @@ metadata:
   labels:
     app: auth
 spec:
-  type: LoadBalancer
-  ports:
-    - port: 80
-      protocol: TCP
-      targetPort: 8080
-
+  type: NodePort
   selector:
     app: auth
+  ports:
+  - port: 8080
+    targetPort: 8080
+    nodePort: 30084
