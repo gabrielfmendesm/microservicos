@@ -1,3 +1,4 @@
+
 # Projeto Platforms, Microservices, DevOps and APIs - 2025.1
 
 Bem-vindo ao projeto da disciplina. Este repositório documenta o desenvolvimento de soluções com microserviços, práticas de DevOps e implantação em nuvem usando Kubernetes (Minikube e AWS EKS).
@@ -5,8 +6,8 @@ Bem-vindo ao projeto da disciplina. Este repositório documenta o desenvolviment
 ## Repositório de Microserviços
 
 Todos os microserviços e artefatos de infraestrutura estão disponíveis neste repositório:  
-- https://github.com/gabrielfmendesm/microservicos
-  _(No README desse repositório constam os links para todos os microserviços individuais da aplicação.)_
+[https://github.com/gabrielfmendesm/microservicos](https://github.com/gabrielfmendesm/microservicos)  
+_(No README desse repositório constam os links para todos os microserviços individuais da aplicação.)_
 
 ## Integrantes do Grupo
 - Gabriel Mendes
