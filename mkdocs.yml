@@ -11,7 +11,7 @@ theme:
 nav:
   - Início: index.md
   - Projeto em Grupo: projeto.md
-  - Projetos Individuais:
+  - Projeto Individual:
       - Exchange API: individual/exchange.md
       - Product API: individual/product.md
       - Order API: individual/order.md
