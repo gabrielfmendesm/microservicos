@@ -8,8 +8,8 @@ Nesta fase do projeto, o objetivo era criar pipelines no Jenkins, conectando cad
 
 A seguir, temos a visão geral da interface do Jenkins com os jobs configurados:
 
-**Dashboard do Jenkins**
-![Dashboard](../img/JENKINSDASH.png)
+**Dashboard do Jenkins**  
+![Dashboard](../img/jenkins-dashboard.png)
 
 Cada serviço (interface ou service) foi adicionado como um pipeline separado.
 
@@ -19,8 +19,8 @@ Cada serviço (interface ou service) foi adicionado como um pipeline separado.
 
 Para permitir o **push automático de imagens Docker**, foi configurada uma credencial do tipo *Username + Password* com o ID `dockerhub-credential`, conforme a imagem abaixo:
 
-**Credential configurada**
-![DockerHub Credential](../img/JENKINSCRED.png)
+**Credential configurada**  
+![DockerHub Credential](../img/jenkins-credential.png)
 
 ---
 
@@ -63,11 +63,11 @@ pipeline {
                 build job: 'order', wait: true
             }
         }
-        stage('Build') { 
+        stage('Build') {
             steps {
                 sh 'mvn -B -DskipTests clean package'
             }
-        }      
+        }
         stage('Build & Push Image') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub-credential', usernameVariable: 'USERNAME', passwordVariable: 'TOKEN')]) {

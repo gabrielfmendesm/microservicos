@@ -17,6 +17,9 @@ nav:
       - Order API: individual/order.md
       - Jenkins: individual/jenkins.md
       - Minikube: individual/minikube.md
+      - Bottlenecks:
+          - Caching: individual/bottlenecks/cache.md
+          - Prometheus + Grafana: individual/bottlenecks/mitigacao.md
 
 markdown_extensions:
   - admonition
