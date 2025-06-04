@@ -5,7 +5,7 @@ Bem-vindo ao projeto da disciplina. Este repositório documenta o desenvolviment
 ## Repositório de Microserviços
 
 Todos os microserviços e artefatos de infraestrutura estão disponíveis neste repositório:  
-- https://github.com/gabrielfmendesm/microservicos  
+- https://github.com/gabrielfmendesm/microservicos
   _(No README desse repositório constam os links para todos os microserviços individuais da aplicação.)_
 
 ## Integrantes do Grupo
