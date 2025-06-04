@@ -3,8 +3,8 @@
 Bem-vindo ao projeto da disciplina. Este repositório documenta o desenvolvimento de soluções com microserviços, práticas de DevOps e implantação em nuvem usando Kubernetes (Minikube e AWS EKS).
 
 ## Integrantes do Grupo
-- Henrique Turco
 - Gabriel Mendes
+- Henrique Turco
 
 ## Estrutura Geral
 
