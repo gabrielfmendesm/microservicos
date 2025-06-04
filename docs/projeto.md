@@ -6,10 +6,11 @@ O projeto em grupo tem como objetivo aplicar práticas modernas de desenvolvimen
 
 ## Objetivos
 
-- Unificar os microserviços desenvolvidos individualmente.
-- Usar autenticação centralizada (Auth).
-- Implantar em Kubernetes local (Minikube) e remoto (AWS EKS).
-- Implementar CI/CD com Jenkins.
+- Configurar a conta AWS para suportar o projeto.
+- Provisionar e configurar corretamente o cluster EKS.
+- Elaborar um plano de custos realista utilizando o AWS Pricing Calculator.
+- Aplicar soluções PaaS para simplificar operações (RDS, EKS, ECR).
+- Garantir que todos os microserviços estejam funcionando corretamente no ambiente de produção.
 
 ## Arquitetura
 
@@ -39,9 +40,14 @@ O projeto em grupo tem como objetivo aplicar práticas modernas de desenvolvimen
 
 Durante este projeto, nós configuramos a conta AWS e provisionamos um cluster EKS. Abaixo, uma captura de tela do cluster em execução:
 
-![Cluster AWS EKS em execução](../img/aws-eks-cluster.png)
+![Cluster AWS EKS em execução](img/aws-eks-cluster.png)
 
 Este cluster foi configurado para escalar automaticamente conforme a demanda usando Auto Scaling Groups e HPA.
+
+**Endpoint da API em execução:**  
+```
+http://aef1f8f294b95439283d49dcde0dbde5-1733067101.sa-east-1.elb.amazonaws.com
+```
 
 ---
 
@@ -49,15 +55,40 @@ Este cluster foi configurado para escalar automaticamente conforme a demanda usa
 
 Utilizamos o AWS Pricing Calculator para gerar um plano de custo que reflete o uso estimado dos recursos no EKS:
 
-![Plano de Custo AWS](../img/price-calculator.png)
+![Plano de Custo AWS](img/price-calculator.png)
 
 A projeção acima demonstra os custos mensais esperados para manter o ambiente dormindo e em uso.
 
 ---
 
+## PaaS
+
+A plataforma como serviço (PaaS) é um modelo de computação em nuvem que fornece uma plataforma para desenvolver, executar e gerenciar aplicativos sem a complexidade de construir e manter a infraestrutura normalmente associada ao desenvolvimento e lançamento de aplicativos.
+
+![Modelo IaaS, PaaS e SaaS](img/iaas-paas-saas-diagram.png)
+
+Durante o desenvolvimento, utilizamos PaaS da AWS de várias formas:
+
+1. **Amazon Relational Database Service (RDS)**
+   - O serviço de banco de dados PostgreSQL foi gerenciado pelo RDS, eliminando a necessidade de configurar e manter servidores de banco de dados.
+   - Configuramos parâmetros de backup e alta disponibilidade diretamente na console do RDS, garantindo persistência e durabilidade dos dados.
+
+2. **Amazon Elastic Kubernetes Service (EKS)**
+   - Embora o EKS seja considerado um serviço gerenciado de Kubernetes (conhecido como Kubernetes como serviço), ele também se encaixa no modelo PaaS pois a AWS gerencia o plano de controle do cluster.
+   - Utilizamos o EKS para orquestrar os microserviços sem precisar provisionar a instância do plano mestre nem gerenciar upgrades de versão do Kubernetes manualmente.
+
+3. **Amazon Elastic Container Registry (ECR)**
+   - Em vez de hospedar um repositório Docker local ou auto-hospedado, utilizamos o ECR para versionar e armazenar as imagens dos microserviços.
+   - As pipelines do Jenkins fazem o push das imagens diretamente para o ECR, que oferece integração nativa com o EKS.
+   - Com o ECR, não precisamos configurar servidores extras para registros de container.
+
+Essas escolhas de PaaS reduziram o overhead operacional e permitiram que focássemos em codificação, monitoração e escalabilidade do cluster EKS.
+
+---
+
 ## Vídeo de Demonstração
 
-A seguir, nosso vídeo de demonstração, mostrando o projeto em funcionamento.  
+A seguir, nosso vídeo de demonstração, mostrando o projeto em funcionamento:
 
-[![Vídeo de Demonstração](../img/video-thumbnail.png)](https://youtu.be/_1hZAeUr1-8)  
+[![Vídeo de Demonstração](img/video-thumbnail.png)](https://youtu.be/_1hZAeUr1-8)  
 *Clique na imagem acima para ver o vídeo.*

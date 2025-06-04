@@ -142,5 +142,5 @@ k8s/
 └─ service.yaml
 ```
 
-- Cada subdiretório contém um arquivo `k8s.yaml` (ou múltiplos) que define o Deployment e o Service.
-- O serviço `postgres-service` possui ConfigMap, Secrets, Deployment e Service separados para maior flexibilidade.
+- Cada microserviço contém um arquivo `k8s.yaml` que define o Deployment e o Service.
+- O serviço do `postgres` possui ConfigMap, Secrets, Deployment e Service separados para maior flexibilidade.
