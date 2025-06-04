@@ -90,5 +90,5 @@ Essas escolhas de PaaS reduziram o overhead operacional e permitiram que focáss
 
 A seguir, nosso vídeo de demonstração, mostrando o projeto em funcionamento:
 
-[![Vídeo de Demonstração](img/video-thumbnail.png)](https://youtu.be/_1hZAeUr1-8)  
+[![Vídeo de Demonstração](img/video-thumbnail.png)](https://youtu.be/plfSACcGH5c)  
 *Clique na imagem acima para ver o vídeo.*
