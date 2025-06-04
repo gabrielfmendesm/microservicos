@@ -466,6 +466,98 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Bottlenecks
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            Bottlenecks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bottlenecks/cache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Caching
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bottlenecks/mitigacao.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Prometheus + Grafana
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -556,14 +648,14 @@
 <hr />
 <h4 id="interface-jenkins">Interface Jenkins</h4>
 <p>A seguir, temos a visão geral da interface do Jenkins com os jobs configurados:</p>
-<p><strong>Dashboard do Jenkins</strong>
-<img alt="Dashboard" src="../../img/JENKINSDASH.png" /></p>
+<p><strong>Dashboard do Jenkins</strong><br />
+<img alt="Dashboard" src="../../img/jenkins-dashboard.png" /></p>
 <p>Cada serviço (interface ou service) foi adicionado como um pipeline separado.</p>
 <hr />
 <h4 id="credencial-docker-hub">Credencial Docker Hub</h4>
 <p>Para permitir o <strong>push automático de imagens Docker</strong>, foi configurada uma credencial do tipo <em>Username + Password</em> com o ID <code>dockerhub-credential</code>, conforme a imagem abaixo:</p>
-<p><strong>Credential configurada</strong>
-<img alt="DockerHub Credential" src="../../img/JENKINSCRED.png" /></p>
+<p><strong>Credential configurada</strong><br />
+<img alt="DockerHub Credential" src="../../img/jenkins-credential.png" /></p>
 <hr />
 <h4 id="jenkinsfile-interfaces">Jenkinsfile (Interfaces)</h4>
 <p>As interfaces (como <code>product</code>, <code>order</code>, <code>account</code>) utilizam um Jenkinsfile simples para build Maven:</p>
@@ -595,11 +687,11 @@
 <span class="w">                </span><span class="n">build</span><span class="w"> </span><span class="nl">job:</span><span class="w"> </span><span class="s1">&#39;order&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">wait:</span><span class="w"> </span><span class="kc">true</span>
 <span class="w">            </span><span class="o">}</span>
 <span class="w">        </span><span class="o">}</span>
-<span class="w">        </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Build&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>
+<span class="w">        </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Build&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
 <span class="w">            </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span>
 <span class="w">                </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;mvn -B -DskipTests clean package&#39;</span>
 <span class="w">            </span><span class="o">}</span>
-<span class="w">        </span><span class="o">}</span><span class="w">      </span>
+<span class="w">        </span><span class="o">}</span>
 <span class="w">        </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Build &amp; Push Image&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
 <span class="w">            </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span>
 <span class="w">                </span><span class="n">withCredentials</span><span class="o">([</span><span class="n">usernamePassword</span><span class="o">(</span><span class="nl">credentialsId:</span><span class="w"> </span><span class="s1">&#39;dockerhub-credential&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">usernameVariable:</span><span class="w"> </span><span class="s1">&#39;USERNAME&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">passwordVariable:</span><span class="w"> </span><span class="s1">&#39;TOKEN&#39;</span><span class="o">)])</span><span class="w"> </span><span class="o">{</span>
