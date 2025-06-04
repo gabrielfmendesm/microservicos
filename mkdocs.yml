@@ -19,7 +19,7 @@ nav:
       - Minikube: individual/minikube.md
       - Bottlenecks:
           - Caching: individual/bottlenecks/cache.md
-          - Prometheus + Grafana: individual/bottlenecks/mitigacao.md
+          - Prometheus + Grafana: individual/bottlenecks/
 
 markdown_extensions:
   - admonition
