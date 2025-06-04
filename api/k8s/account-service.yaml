@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: account
-        image: store-account:latest
+        image: gabrielfmendesm/account:latest
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080

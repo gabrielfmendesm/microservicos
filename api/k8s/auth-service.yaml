@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: auth
-        image: store-auth:latest
+        image: gabrielfmendesm/auth:latest
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080

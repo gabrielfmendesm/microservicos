@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: product
-        image: store-product:latest
+        image: gabrielfmendesm/product:latest
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
