@@ -312,6 +312,33 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#configuracao-aws-e-eks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuração AWS e EKS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#analise-de-custos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Análise de Custos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#video-de-demonstracao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vídeo de Demonstração
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -643,6 +670,33 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#configuracao-aws-e-eks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuração AWS e EKS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#analise-de-custos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Análise de Custos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#video-de-demonstracao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vídeo de Demonstração
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -661,7 +715,7 @@
 
 <h1 id="projeto-em-grupo">Projeto em Grupo</h1>
 <h2 id="visao-geral-do-projeto">Visão Geral do Projeto</h2>
-<p>O projeto em grupo tem como objetivo aplicar práticas modernas de desenvolvimento em nuvem, DevOps e microserviços em um ambiente real de produção usando a AWS. As entregas foram organizadas em etapas práticas que abrangem desde a configuração da infraestrutura (AWS e EKS), testes de desempenho (HPA e carga), até o deploy automatizado com Jenkins (CI/CD). Além disso, cada grupo foi responsável por realizar uma análise de custos realista utilizando o AWS Cost Explorer e calcular o uso de recursos com base em seu cluster. A entrega final inclui não apenas a implantação funcional da aplicação via EKS e banco de dados com RDS, mas também a documentação completa, uma apresentação de storytelling visual e um vídeo de demonstração entre 2 a 3 minutos. O projeto avalia tanto aspectos técnicos quanto de comunicação, destacando desafios enfrentados e práticas de engenharia adotadas, como o uso de PaaS, testes de carga e automatização de pipelines. Cada etapa do projeto contribui para uma formação sólida em arquitetura de sistemas distribuídos, cloud computing e entrega contínua.</p>
+<p>O projeto em grupo tem como objetivo aplicar práticas modernas de desenvolvimento em nuvem, DevOps e microserviços em um ambiente real de produção usando a AWS. As entregas foram organizadas em etapas práticas que abrangem desde a configuração da infraestrutura (AWS e EKS), testes de desempenho (HPA e carga), até o deploy automatizado com Jenkins (CI/CD). Além disso, cada grupo foi responsável por realizar uma análise de custos realista utilizando o AWS Pricing Calculator e calcular o uso de recursos com base em seu cluster. A entrega final inclui não apenas a implantação funcional da aplicação via EKS e banco de dados com RDS, mas também a documentação completa, uma apresentação de storytelling visual e um vídeo de demonstração entre 2 a 3 minutos. O projeto avalia tanto aspectos técnicos quanto de comunicação, destacando desafios enfrentados e práticas de engenharia adotadas, como o uso de PaaS, testes de carga e automatização de pipelines. Cada etapa do projeto contribui para uma formação sólida em arquitetura de sistemas distribuídos, cloud computing e entrega contínua.</p>
 <h2 id="objetivos">Objetivos</h2>
 <ul>
 <li>Unificar os microserviços desenvolvidos individualmente.</li>
@@ -678,19 +732,34 @@
 </ul>
 <h2 id="fluxo-de-requisicao">Fluxo de requisição</h2>
 <ol>
-<li>Login no Auth → recebe token JWT</li>
-<li>Token usado no Gateway para acessar rotas protegidas</li>
-<li>Gateway redireciona para Account, Order ou Product</li>
+<li>Login no Auth → recebe token JWT  </li>
+<li>Token usado no Gateway para acessar rotas protegidas  </li>
+<li>Gateway redireciona para Account, Order ou Product  </li>
 </ol>
 <h2 id="deploy">Deploy</h2>
 <ul>
-<li><strong>Minikube</strong>: usado em testes locais</li>
-<li><strong>EKS</strong>: usado na apresentação final</li>
+<li><strong>Minikube</strong>: usado em testes locais  </li>
+<li><strong>EKS</strong>: usado na apresentação final  </li>
 </ul>
 <hr />
 <blockquote>
 <p>Toda a infraestrutura foi gerenciada com <code>kubectl</code>, arquivos YAML e Helm quando aplicável.</p>
 </blockquote>
+<hr />
+<h2 id="configuracao-aws-e-eks">Configuração AWS e EKS</h2>
+<p>Durante este projeto, nós configuramos a conta AWS e provisionamos um cluster EKS. Abaixo, uma captura de tela do cluster em execução:</p>
+<p><img alt="Cluster AWS EKS em execução" src="../img/aws-eks-cluster.png" /></p>
+<p>Este cluster foi configurado para escalar automaticamente conforme a demanda usando Auto Scaling Groups e HPA.</p>
+<hr />
+<h2 id="analise-de-custos">Análise de Custos</h2>
+<p>Utilizamos o AWS Pricing Calculator para gerar um plano de custo que reflete o uso estimado dos recursos no EKS:</p>
+<p><img alt="Plano de Custo AWS" src="../img/price-calculator.png" /></p>
+<p>A projeção acima demonstra os custos mensais esperados para manter o ambiente dormindo e em uso.</p>
+<hr />
+<h2 id="video-de-demonstracao">Vídeo de Demonstração</h2>
+<p>A seguir, nosso vídeo de demonstração, mostrando o projeto em funcionamento.  </p>
+<p><a href="https://youtu.be/_1hZAeUr1-8"><img alt="Vídeo de Demonstração" src="../img/video-thumbnail.png" /></a><br />
+<em>Clique na imagem acima para ver o vídeo.</em></p>
 
 
 
