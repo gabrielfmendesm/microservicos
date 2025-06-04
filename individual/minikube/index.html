@@ -624,7 +624,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../bottlenecks/" class="md-nav__link">
+      <a href="../bottlenecks/grafana-prometheus/" class="md-nav__link">
         
   
   
@@ -922,8 +922,8 @@ gateway-service    ClusterIP   10.96.0.12      &lt;none&gt;        80/TCP       
 └─ service.yaml
 </code></pre></div>
 <ul>
-<li>Cada subdiretório contém um arquivo <code>k8s.yaml</code> (ou múltiplos) que define o Deployment e o Service.</li>
-<li>O serviço <code>postgres-service</code> possui ConfigMap, Secrets, Deployment e Service separados para maior flexibilidade.</li>
+<li>Cada microserviço contém um arquivo <code>k8s.yaml</code> que define o Deployment e o Service.</li>
+<li>O serviço do <code>postgres</code> possui ConfigMap, Secrets, Deployment e Service separados para maior flexibilidade.</li>
 </ul>
 
 
