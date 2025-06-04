@@ -51,11 +51,11 @@ Este pipeline **compila o código** e garante que as dependências estejam corre
 Para os services (como `order-service`, `product-service`, etc.), o Jenkinsfile realiza também o build da imagem Docker e seu push para o Docker Hub:
 
 ```groovy
-ppipeline {
+pipeline {
     agent any
     environment {
-        SERVICE = 'order-service'
-        NAME = "henriquetg1/${env.SERVICE}"
+        SERVICE = 'order'
+        NAME = "gabrielfmendesm/${env.SERVICE}"
     }
     stages {
         stage('Dependecies') {
